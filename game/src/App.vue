@@ -68,6 +68,7 @@ html, body {
     bottom:0px;
     width:100%;
     height: 15%;
+    padding-bottom: 5%;
 }
 
 .link {

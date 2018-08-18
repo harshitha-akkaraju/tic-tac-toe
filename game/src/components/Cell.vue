@@ -1,6 +1,6 @@
 <template>
     <div class="cell" v-on:click="updateBoard(index, human)">
-        <p v-bind:class="{text: true, human: isHuman}">{{value}}</p>
+        <p v-bind:class="{text: true, humanStyle: this.board[index] === human, aiStyle: this.board[index] === ai}">{{value}}</p>
     </div>
 </template>
 
@@ -12,7 +12,8 @@
             'index',
             'isHuman',
             'ai',
-            'human'
+            'human',
+            'board'
         ],
         methods: {
 			updateBoard(index, player) {
@@ -39,11 +40,11 @@
         font-weight: bold;
     }
 
-    .human {
+    .humanStyle {
         color: #E15554;
     }
 
-    .ai {
+    .aiStyle {
         color: #046865;
     }
 

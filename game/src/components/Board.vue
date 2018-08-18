@@ -4,21 +4,21 @@
 
         <div class="grid">
             <div class="row">
-                <Cell :value="board[0]" @updateBoard="updateBoard" :index="0" :isHuman="counter % 2 == 0" :ai="aiPlayer" :human="humanPlayer"/>
-                <Cell :value="board[1]" @updateBoard="updateBoard" :index="1" :isHuman="counter % 2 == 0" :ai="aiPlayer" :human="humanPlayer"/>
-                <Cell :value="board[2]" @updateBoard="updateBoard" :index="2" :isHuman="counter % 2 == 0" :ai="aiPlayer" :human="humanPlayer"/>
+                <Cell :value="board[0]" @updateBoard="updateBoard" :index="0" :isHuman="counter % 2 == 0" :ai="aiPlayer" :human="humanPlayer" :board="board"/>
+                <Cell :value="board[1]" @updateBoard="updateBoard" :index="1" :isHuman="counter % 2 == 0" :ai="aiPlayer" :human="humanPlayer" :board="board"/>
+                <Cell :value="board[2]" @updateBoard="updateBoard" :index="2" :isHuman="counter % 2 == 0" :ai="aiPlayer" :human="humanPlayer" :board="board"/>
             </div>
 
             <div class="row">
-                <Cell :value="board[3]" @updateBoard="updateBoard" :index="3" :isHuman="counter % 2 == 0" :ai="aiPlayer" :human="humanPlayer"/>
-                <Cell :value="board[4]" @updateBoard="updateBoard" :index="4" :isHuman="counter % 2 == 0" :ai="aiPlayer" :human="humanPlayer"/>
-                <Cell :value="board[5]" @updateBoard="updateBoard" :index="5" :isHuman="counter % 2 == 0" :ai="aiPlayer" :human="humanPlayer"/>
+                <Cell :value="board[3]" @updateBoard="updateBoard" :index="3" :isHuman="counter % 2 == 0" :ai="aiPlayer" :human="humanPlayer" :board="board"/>
+                <Cell :value="board[4]" @updateBoard="updateBoard" :index="4" :isHuman="counter % 2 == 0" :ai="aiPlayer" :human="humanPlayer" :board="board"/>
+                <Cell :value="board[5]" @updateBoard="updateBoard" :index="5" :isHuman="counter % 2 == 0" :ai="aiPlayer" :human="humanPlayer" :board="board"/>
             </div>
 
             <div class="row">
-                <Cell :value="board[6]" @updateBoard="updateBoard" :index="6" :isHuman="counter % 2 == 0" :ai="aiPlayer" :human="humanPlayer"/>
-                <Cell :value="board[7]" @updateBoard="updateBoard" :index="7" :isHuman="counter % 2 == 0" :ai="aiPlayer" :human="humanPlayer"/>
-                <Cell :value="board[8]" @updateBoard="updateBoard" :index="8" :isHuman="counter % 2 == 0" :ai="aiPlayer" :human="humanPlayer"/>
+                <Cell :value="board[6]" @updateBoard="updateBoard" :index="6" :isHuman="counter % 2 == 0" :ai="aiPlayer" :human="humanPlayer" :board="board"/>
+                <Cell :value="board[7]" @updateBoard="updateBoard" :index="7" :isHuman="counter % 2 == 0" :ai="aiPlayer" :human="humanPlayer" :board="board"/>
+                <Cell :value="board[8]" @updateBoard="updateBoard" :index="8" :isHuman="counter % 2 == 0" :ai="aiPlayer" :human="humanPlayer" :board="board"/>
             </div>
         </div>
     </div>
