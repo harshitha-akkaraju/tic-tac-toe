@@ -61,14 +61,14 @@ html, body {
 
 #footer {
     color: #046865;
-    font-size: 1.2em;
+    font-size: 1.1em;
     font-weight: lighter;
     position: fixed;
     left:0px;
     bottom:0px;
     width:100%;
     height: 15%;
-    padding-bottom: 5%;
+    padding-bottom: 3%;
 }
 
 .link {
