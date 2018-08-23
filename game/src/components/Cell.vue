@@ -13,11 +13,12 @@
             'isHuman',
             'ai',
             'human',
-            'board'
+            'board',
+            'endGame'
         ],
         methods: {
 			updateBoard(index, player) {
-				if (this.isHuman) {
+				if (this.isHuman && !this.endGame) {
 					this.$emit('updateBoard', index, player);
                 }
             }

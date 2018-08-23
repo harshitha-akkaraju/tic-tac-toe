@@ -1,33 +1,37 @@
 <template>
     <div>
         <Scores v-bind:ai="aiPlayer" v-bind:human="humanPlayer"/>
-
+        <div v-if="this.endGame">{{this.message()}}</div>
         <div class="grid">
             <div class="row">
-                <Cell :value="board[0]" @updateBoard="updateBoard" :index="0" :isHuman="counter % 2 === 0" :ai="aiPlayer" :human="humanPlayer" :board="board"/>
-                <Cell :value="board[1]" @updateBoard="updateBoard" :index="1" :isHuman="counter % 2 === 0" :ai="aiPlayer" :human="humanPlayer" :board="board"/>
-                <Cell :value="board[2]" @updateBoard="updateBoard" :index="2" :isHuman="counter % 2 === 0" :ai="aiPlayer" :human="humanPlayer" :board="board"/>
+                <Cell :value="board[0]" @updateBoard="updateBoard" :index="0" :isHuman="counter % 2 === 0" :ai="aiPlayer" :human="humanPlayer" :board="board" :endGame="endGame"/>
+                <Cell :value="board[1]" @updateBoard="updateBoard" :index="1" :isHuman="counter % 2 === 0" :ai="aiPlayer" :human="humanPlayer" :board="board" :endGame="endGame"/>
+                <Cell :value="board[2]" @updateBoard="updateBoard" :index="2" :isHuman="counter % 2 === 0" :ai="aiPlayer" :human="humanPlayer" :board="board" :endGame="endGame"/>
             </div>
 
             <div class="row">
-                <Cell :value="board[3]" @updateBoard="updateBoard" :index="3" :isHuman="counter % 2 === 0" :ai="aiPlayer" :human="humanPlayer" :board="board"/>
-                <Cell :value="board[4]" @updateBoard="updateBoard" :index="4" :isHuman="counter % 2 === 0" :ai="aiPlayer" :human="humanPlayer" :board="board"/>
-                <Cell :value="board[5]" @updateBoard="updateBoard" :index="5" :isHuman="counter % 2 === 0" :ai="aiPlayer" :human="humanPlayer" :board="board"/>
+                <Cell :value="board[3]" @updateBoard="updateBoard" :index="3" :isHuman="counter % 2 === 0" :ai="aiPlayer" :human="humanPlayer" :board="board" :endGame="endGame"/>
+                <Cell :value="board[4]" @updateBoard="updateBoard" :index="4" :isHuman="counter % 2 === 0" :ai="aiPlayer" :human="humanPlayer" :board="board" :endGame="endGame"/>
+                <Cell :value="board[5]" @updateBoard="updateBoard" :index="5" :isHuman="counter % 2 === 0" :ai="aiPlayer" :human="humanPlayer" :board="board" :endGame="endGame"/>
             </div>
 
             <div class="row">
-                <Cell :value="board[6]" @updateBoard="updateBoard" :index="6" :isHuman="counter % 2 === 0" :ai="aiPlayer" :human="humanPlayer" :board="board"/>
-                <Cell :value="board[7]" @updateBoard="updateBoard" :index="7" :isHuman="counter % 2 === 0" :ai="aiPlayer" :human="humanPlayer" :board="board"/>
-                <Cell :value="board[8]" @updateBoard="updateBoard" :index="8" :isHuman="counter % 2 === 0" :ai="aiPlayer" :human="humanPlayer" :board="board"/>
+                <Cell :value="board[6]" @updateBoard="updateBoard" :index="6" :isHuman="counter % 2 === 0" :ai="aiPlayer" :human="humanPlayer" :board="board" :endGame="endGame"/>
+                <Cell :value="board[7]" @updateBoard="updateBoard" :index="7" :isHuman="counter % 2 === 0" :ai="aiPlayer" :human="humanPlayer" :board="board" :endGame="endGame"/>
+                <Cell :value="board[8]" @updateBoard="updateBoard" :index="8" :isHuman="counter % 2 === 0" :ai="aiPlayer" :human="humanPlayer" :board="board" :endGame="endGame"/>
             </div>
         </div>
+        <p class="note"><i class="fas fa-info-circle"></i> <em> hit refresh to restart the game</em></p>
     </div>
 </template>
 
 <script>
     import Cell from './Cell'
     import Scores from './Scores'
-	export default {
+    import swal from 'sweetalert2/dist/sweetalert2.js'
+    import 'sweetalert2/src/sweetalert2.scss'
+
+		export default {
 		name: 'Board',
         components: {
 			Cell,
@@ -99,7 +103,7 @@
                     tempBoard[index] = this.aiPlayer;
                     let minValueMove = this.minValue(tempBoard);
                     minValueMove.index = index;
-                    if (minValueMove.value > best.value) {
+                    if (minValueMove.value >= best.value) {
                         best.value = minValueMove.value;
                         best.index = minValueMove.index;
                     }
@@ -122,7 +126,7 @@
                     tempBoard[index] = this.humanPlayer;
                     let maxValueMove = this.maxValue(tempBoard);
                     maxValueMove.index = index;
-                    if (maxValueMove.value < best.value) {
+                    if (maxValueMove.value <= best.value) {
                         best.value = maxValueMove.value;
                         best.index = maxValueMove.index;
                     }
@@ -136,7 +140,24 @@
                 } else if (this.isWinning(this.board, this.humanPlayer)) {
                 	this.endGame = true;
                     this.winner = this.humanPlayer;
+                } else if (this.counter === 8) {
+                	this.endGame = true;
+                	this.winner = "tie";
                 }
+            },
+            message() {
+				let message = "";
+				if (this.winner === this.aiPlayer) {
+					message = this.winner === this.aiPlayer ? "😈 \n AI wins" : "";
+                } else if (this.winner === this.humanPlayer) {
+					message = "😎\n You win!";
+                } else if (this.counter === 8) {
+                  message = "✌🏽 \n It's a tie";
+                }
+                swal({
+                  title: message,
+                  html: '<a style="color:#7cdbd5;text-decoration: none" href="https://github.com/harshitha-akkaraju/tic-tac-toe">view project on <i class="fab fa-github"></i></a>'
+                });
             }
         }
 	};
@@ -151,4 +172,9 @@
     .grid {
         margin: 3% auto 3% auto
     }
+
+    .note {
+        color: #1d8a99
+    }
+
 </style>
