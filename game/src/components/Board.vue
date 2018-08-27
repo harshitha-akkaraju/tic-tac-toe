@@ -60,6 +60,16 @@
                     	emptyIndices.push(index);
                     }
                 });
+				// shuffle the empty indices
+                let i = 0;
+                let j = 0;
+                let temp = null;
+                for (i = emptyIndices.length - 1; i > 0; i -= 1) {
+                    j = Math.floor(Math.random() * (i + 1));
+                    temp = emptyIndices[i];
+                    emptyIndices[i] = emptyIndices[j];
+                    emptyIndices[j] = temp;
+                }
 				return emptyIndices;
             },
             updateBoard(cellIndex, player) {
@@ -91,6 +101,8 @@
 				let emptyIndices = this.getEmptyIndices(board);
                 if (this.isWinning(board, this.aiPlayer)) {
                 	return {value: 100};
+                } else if (this.isWinning(board, this.humanPlayer)) {
+                  return {value: -100};
                 } else if (emptyIndices.length === 0) {
                 	return {value: 0};
                 }
@@ -112,10 +124,12 @@
             },
             minValue(board) {
                 let emptyIndices = this.getEmptyIndices(board);
-                if (this.isWinning(board, this.humanPlayer)) {
-                	return {value: -100};
+                if (this.isWinning(board, this.aiPlayer)) {
+                    return {value: 100};
+                } else if (this.isWinning(board, this.humanPlayer)) {
+                    return {value: -100};
                 } else if (emptyIndices.length === 0) {
-                	return {value: 0};
+                    return {value: 0};
                 }
                 let best = {
                     index: -1,
@@ -140,7 +154,7 @@
                 } else if (this.isWinning(this.board, this.humanPlayer)) {
                 	this.endGame = true;
                     this.winner = this.humanPlayer;
-                } else if (this.counter === 8) {
+                } else if (this.counter === 10) {
                 	this.endGame = true;
                 	this.winner = "tie";
                 }
@@ -151,7 +165,7 @@
 					message = this.winner === this.aiPlayer ? "😈 \n AI wins" : "";
                 } else if (this.winner === this.humanPlayer) {
 					message = "😎\n You win!";
-                } else if (this.counter === 8) {
+                } else if (this.counter === 10 && this.endGame) {
                   message = "✌🏽 \n It's a tie";
                 }
                 swal({
