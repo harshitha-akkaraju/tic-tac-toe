@@ -158,7 +158,6 @@
                 	this.endGame = true;
                 	this.winner = "tie";
                 }
-                console.log(this.counter);
             },
             message() {
 				let message = "";
