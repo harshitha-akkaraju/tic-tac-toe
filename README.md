@@ -8,4 +8,4 @@ something new -- hence Vue Js.
 You can try the game [here](https://minimax-tic-tac-toe.herokuapp.com/)!
 
 
-Read my notes on the Minimax algorithm and its run time [here]().
+Read my notes on the Minimax algorithm and its run time [here](https://github.com/harshitha-akkaraju/tic-tac-toe/blob/master/game/Notes.md).
